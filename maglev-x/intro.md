@@ -50,7 +50,9 @@ Return of the monolith
 
 ---
 
-![Dev Workflow](./test.png "Logo Title Text 1")
+### Dev workflow
+
+<img src="https://github3.cisco.com/raw/havishwa/slides/master/maglev-x/workflow.png?token=AAAOrRLP4nntdaopxc9NBEBSEcB_DI_Sks5bktmlwA%3D%3D" height="700px">
 
 ---
 
