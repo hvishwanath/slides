@@ -665,22 +665,23 @@ pre .xml .cdata {
 </section>
   </div>
   <div class="slide hidden -" id="slide-4">
-    <section class="slide-content"><p>We are micro services, but dont have any build/deployment advantages that come with it</p>
+    <section class="slide-content"><p><strong>Microservices... but...</strong></p>
 <ul>
+<li><em>We are micro services, but dont have any build/deployment advantages that come with it</em></li>
 <li><em>We release as a monolith</em></li>
-<li><em>Simple fixes to be delivered requires a new build</em></li>
+<li><em>Simple, localized fixes to be delivered requires a new build</em></li>
 </ul>
-<p>Getting a maglev build out is a huge task</p>
+<p><strong>Getting a maglev build out is a huge task</strong></p>
 <ul>
 <li><em>Significant overhead with branches, release management</em></li>
 <li><em>Babysitting builds sap out energy</em></li>
 </ul>
-<p>CI/CD tooling is not streamlined</p>
+<p><strong>CI/CD tooling is not streamlined</strong></p>
 <ul>
 <li><em>There is no specification of how this must happen</em></li>
-<li><em>Any activity (brancing, registry cleanup etc.,) here will cause ripples almost in every area</em></li>
+<li><em>Any activity (brancing, registry cleanup etc.,) in CI area will cause ripples almost in every area</em></li>
 </ul>
-<p>Butterfly effect and blast radius</p>
+<p><strong>Butterfly effect and blast radius</strong></p>
 <ul>
 <li><em>Issue in one library/component will hold up the entire build</em></li>
 <li><em>No way to revert to previous known stable version of that component</em></li>
@@ -688,18 +689,18 @@ pre .xml .cdata {
 </section>
   </div>
   <div class="slide hidden -" id="slide-5">
-    <section class="slide-content"><p>Code layout is not uniform</p>
+    <section class="slide-content"><p><strong>Code layout is not uniform</strong></p>
 <ul>
 <li><em>Source is somewhere, build is somewhere else, deployment is somewhere else</em></li>
 <li><em>Increased cognitive overload for new comers</em></li>
 <li><em>Requires significant context for anyone to be productive and deliver with confidence</em></li>
 </ul>
-<p>Developer workflow</p>
+<p><strong>Developer workflow</strong></p>
 <ul>
 <li><em>Not uniform</em></li>
 <li><em>Significant setup overhead to test features/fixes</em></li>
 </ul>
-<p>Return of the monolith</p>
+<p><strong>Return of the monolith</strong></p>
 <ul>
 <li><em>Current code organization doesn&#39;t facilitate writing tests for managed services</em></li>
 <li><em>Developers spend significant time testing manually, but all is lost and cannot be repeated</em></li>
@@ -726,18 +727,19 @@ pre .xml .cdata {
 </section>
   </div>
   <div class="slide hidden -" id="slide-8">
-    <section class="slide-content"><p>Versioning</p>
+    <section class="slide-content"><p><strong>Versioning</strong></p>
 <ul>
 <li><em><a href="https://semver.org/">SemVer2</a>: Version numbers should follow conventions and indicate meaning</em></li>
 <li><em>Every independently deployable entity MUST carry its own version</em></li>
 <li><em>Can revert/checkout to a specific fix of a specific service</em></li>
 </ul>
-<p>MicroServices</p>
+<p><strong>Micro Services</strong></p>
 <ul>
 <li><em>Can be developed, tested, built, deployed and delivered independently</em></li>
 <li><em>Container Boundaries</em></li>
 <li><em>A service team / service owner is responsible for everything about that service</em><ul>
 <li><em>Stability, Performance, Quality, Security, CSDL, Documentation etc.,</em></li>
+<li><em>BYOO (Bring your own observability)</em></li>
 <li><em>Tooling can be developed to test these aspects and integrated during builds</em></li>
 </ul>
 </li>
@@ -745,33 +747,298 @@ pre .xml .cdata {
 </section>
   </div>
   <div class="slide hidden -" id="slide-9">
-    <section class="slide-content"><p>Explicit is better than implicit</p>
+    <section class="slide-content"><p><strong>Explicit is better than implicit</strong></p>
 <ul>
 <li><em>Current CI is a bit of magic. Requires lot of context, easy to make mistakes, fairly easy to fix them, but very hard to integrate into a build</em></li>
 <li><em>Maglev release is essentially a specification of all participating services</em></li>
 <li><em>Helps with unified tooling, vs reinventing for every maglev form factor</em></li>
 </ul>
-<p>Separate concerns, but unify solutions</p>
-<hr>
+<p><strong>Separate concerns, unify solutions</strong></p>
+<ul>
+<li><em>Any service in maglev must have its code, tests, container builds, deployment artifacts, functional test etc., together, in one place</em></li>
+<li><em>Facilitates ability to develop, build, deploy, test and iterate as a unit</em></li>
+<li><em>Provides a framework for developers to automate and re-use the manual corner cases they test currently</em></li>
+</ul>
+<p><strong>Code repositories</strong></p>
+<ul>
+<li><em>Recommend that anything that can have its own deployment cadence, should probably be in its own repo</em></li>
+<li><em>Makes it easy to version, revert, checkout. Contains the change domain</em></li>
+</ul>
 </section>
   </div>
   <div class="slide hidden -" id="slide-10">
-    <section class="slide-content"><h3 id="dev-workflow">Dev workflow</h3>
-<p><img src="https://github3.cisco.com/raw/havishwa/slides/master/maglev-x/workflow.png?token=AAAOrfn4F-MbpBopr8pZuK91A_Sc7T0sks5blbEzwA%3D%3D" alt="workflow"></p>
+    <section class="slide-content"><p><strong>CI Stuff</strong></p>
+<ul>
+<li><em>Artifact for each service a helm chart (implies the corresponding container). No more tarballs.</em></li>
+<li><em>Do not rebuild containers/artifacts between stages</em></li>
+<li><em>Run tests in a clustered environment</em></li>
+</ul>
+<p><strong>Leverage community tools</strong></p>
+<ul>
+<li><em>Fair bit of tooling/documentation available</em></li>
+<li><em>More advancements by the day</em></li>
+<li><em>Align and refactor in such a way that we can take advantage of them</em></li>
+</ul>
 </section>
   </div>
   <div class="slide hidden -" id="slide-11">
-    <section class="slide-content"><h2 id="next">Next</h2>
+    <section class="slide-content"><h1 id="how-">How ?</h1>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-12">
+    <section class="slide-content"><h2 id="users-and-roles">Users and Roles</h2>
 <ul>
-<li>AWS deployments with helm</li>
-<li>ISO installer has to be ported</li>
-<li>Remove complex orchestration logic from ansible as much as possible<ul>
-<li>Kong API seeding (modelled as CRDs with custom controller)</li>
-<li>Docker registry seeding (modelled as a configmap with a controller)</li>
-<li>IDM resource creation (post-install hook)</li>
-<li>Managed Services user creation (post-install hook)</li>
+<li>Service Developers : Team responsible for a service. End To End. </li>
+<li>Service Owner: Admin for the service. Responsible for stability, performance, <code>release</code> of the service</li>
+<li>CI team</li>
+<li>QA team</li>
+<li>Maglev Admin : Team responsible for <code>maglev-release</code></li>
+<li>Platform Teams: Teams responsible for getting a <code>maglev-release</code> into a platform (ex. DNAC)</li>
+</ul>
+<p>These are just logical roles/definitions. In our setup, there can be a few people that play (are already playing) these roles.</p>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-13">
+    <section class="slide-content"><h2 id="service-development-service-team-">Service Development (Service Team)</h2>
+<h3 id="process">Process</h3>
+<ul>
+<li>Anything requiring a separate deployment cadence is in its own repo</li>
+<li>Has a <code>VERSION</code> file</li>
+<li>Developers commit, raise PR</li>
+<li>PR jobs builds temporary containers/helm chart. Runs tests in a cluster</li>
+<li>Developers can do this in their local environments pointing to their dev clusters</li>
+<li>PR Gate runs styling, formatting, UT, coverage, static analysis etc.,</li>
+<li>Tests ensure all aspects of the service are tested<ul>
+<li>For ex. tests clustering/failover for managed services</li>
 </ul>
 </li>
+</ul>
+<h3 id="artifacts">Artifacts</h3>
+<ul>
+<li>Temporary artifacts. Pushed into a PR infrastructure. Has agressive (daily) GC policies</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-14">
+    <section class="slide-content"><h2 id="service-release-service-owner-">Service Release (Service Owner)</h2>
+<h3 id="process">Process</h3>
+<ul>
+<li>Release owner determines when to make a release (after all required bugfixes/features have landed)</li>
+<li>Every release is a GitRelease. Automated documentation, release notes</li>
+<li>Release Gate<ul>
+<li>Runs all tests along with smoke/sanity/TestOnDemand with a previously known stable build of maglev</li>
+</ul>
+</li>
+<li>Jenkins job to make a release. Updates version</li>
+<li>Releases Container and Chart</li>
+</ul>
+<h3 id="artifacts">Artifacts</h3>
+<ul>
+<li>Helm Chart. Container.</li>
+<li>Present in service-release repository</li>
+<li>GC policy can be once in 2 weeks</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-15">
+    <section class="slide-content"><h2 id="release-candidate-daily-integration-ci-team-">Release Candidate / Daily Integration (CI Team)</h2>
+<h3 id="process">Process</h3>
+<ul>
+<li>Maglev release is a specification of participating components</li>
+<li>Release specification is maintained in a git repo</li>
+<li>Pulls components as per the specification. Creates cluster</li>
+<li>RC Gate<ul>
+<li>Runs Smoke/Sanity/Automated Regression/Test On Demand* on RC cluster</li>
+</ul>
+</li>
+<li>If successful, creates a release candidate</li>
+</ul>
+<h3 id="artifacts">Artifacts</h3>
+<ul>
+<li>Creates a <code>rc.yaml</code>, which contains specific versions of the components that qualified RC gate</li>
+<li>Commits <code>rc.yaml</code> back into the repo</li>
+<li>Copies helm/docker artifacts to rc repo</li>
+<li>GC policy can be once in a month</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-16">
+    <section class="slide-content"><h2 id="maglev-release-qa-ci-team-">Maglev Release (QA / CI Team)</h2>
+<h3 id="process">Process</h3>
+<ul>
+<li>QA Team will pick up a release candidate</li>
+<li>Full blown tests<ul>
+<li>Regressions</li>
+<li>System update (from a prev qualified release or combination)</li>
+<li>HA, Backup/Restore, Service Dependency, Multi Master, FailOvers etc., </li>
+</ul>
+</li>
+<li>Promotes a qualifying RC to Release</li>
+</ul>
+<h3 id="artifacts">Artifacts</h3>
+<ul>
+<li>Creates a <code>release.yaml</code>, which is essentially a snapshot of qualifying <code>rc.yaml</code></li>
+<li>Commits <code>release.yaml</code> back into the repo</li>
+<li>Copies helm/docker artifacts to rc repo</li>
+<li>GC policy can be once in 6 months</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-17">
+    <section class="slide-content"><h3 id="in-a-nutshell">In a nutshell</h3>
+<p><img src="https://github3.cisco.com/raw/havishwa/slides/master/maglev-x/workflow.png?token=AAAOrfn4F-MbpBopr8pZuK91A_Sc7T0sks5blbEzwA%3D%3D" alt="workflow"></p>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-18">
+    <section class="slide-content"><h1 id="demo">Demo</h1>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-19">
+    <section class="slide-content"><h2 id="use-cases">Use Cases</h2>
+<h3 id="stateless-service">Stateless Service</h3>
+<ul>
+<li><code>maglev-catalog</code></li>
+<li>Repo has src, tests, deployment code in a single place</li>
+<li>All depedencies are locked down</li>
+<li>Has language specific styling, coverage, static analysis</li>
+<li>PR job build, deploy to cluster and run tests</li>
+<li><a href="https://github3.cisco.com/maglev-x/maglev-catalog">https://github3.cisco.com/maglev-x/maglev-catalog</a></li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-20">
+    <section class="slide-content"><h3 id="stateful-managedservice-">Stateful (ManagedService)</h3>
+<ul>
+<li><code>rabbitmq</code></li>
+<li>Repo has src, tests, deployment code in a single place</li>
+<li>Documentation about how to use it (first step towards service catalog)</li>
+<li>Can be developed, built, tested, qualified separately (for ex. performance/scale numbers, supported ha topology etc.,)</li>
+<li>PR job builds, deploys to cluster, runs HA/Clustering tests</li>
+</ul>
+<h3 id="common">Common</h3>
+<ul>
+<li>BYOCI: Jenkinsfile in the repo dictates how CI must happen*</li>
+<li>Leverage open source tooling <ul>
+<li>Harbor</li>
+<li>Jenkins with k8s plugin</li>
+<li>Github Branch plugin (which autocreates jenkins jobs)</li>
+</ul>
+</li>
+<li>BYOO: Bring your own observability<ul>
+<li><code>maglev-catalog</code> brings its own prometheus scrape targets</li>
+<li>Grafana charts to visualize key metrics</li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-21">
+    <section class="slide-content"><h1 id="action-">Action!</h1>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-22">
+    <section class="slide-content"><h1 id="before-after">Before / After</h1>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-23">
+    <section class="slide-content"><p><strong>Branching</strong></p>
+<ul>
+<li>Each maglev release train is a branch in <code>maglev-release-manifest</code> repo</li>
+<li>Service level branching is upto the service teams - more ofen than not, branching at service level may not even be required</li>
+<li>Forces us to think about backward compatibility</li>
+</ul>
+<p><strong>Incremental builds</strong></p>
+<ul>
+<li>If a component has not changed, its version in the release doesn&#39;t change. So, comes for free.</li>
+</ul>
+<p><strong>System Updates</strong></p>
+<ul>
+<li>System update will basically be a controller that ensures a particular release spec is realized on a cluster</li>
+<li>Unified tooling on top of release spec. Can be re-used during installation, upgrades etc.,</li>
+</ul>
+<p><strong>Somebody did a library change</strong></p>
+<ul>
+<li>No problem. Service <em>MUST</em> explicitly pull it. No more magic variables.</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-24">
+    <section class="slide-content"><p><strong>A bug in one of the released components</strong></p>
+<ul>
+<li>Localized fixes.</li>
+<li>If not revert that particular service.</li>
+<li>It is just a single line change in <code>tip.yaml</code></li>
+</ul>
+<p><strong>Capability Version</strong></p>
+<ul>
+<li><code>release spec</code> carries the capability</li>
+</ul>
+<p><strong>Common libraries</strong></p>
+<ul>
+<li>In a single repo. Separately versioned. Communicate to consumers regarding new release/features (auto generated)</li>
+</ul>
+<p><strong>Maglev Catalog manifests</strong></p>
+<ul>
+<li>Convert everything to addons</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-25">
+    <section class="slide-content"><h1 id="cons">Cons</h1>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-26">
+    <section class="slide-content"><p><strong>Mono vs Multi repo</strong></p>
+<ul>
+<li>If something can have a different deployment cadence, it is better to be in a different repo</li>
+<li>Increases complexity in terms of dealing/navigating code<ul>
+<li>git submodule, git subtree can help</li>
+</ul>
+</li>
+<li>Can leverage tooling (automated release notes, versioning, )</li>
+</ul>
+<p><strong>Common changes can take a long time to get into services</strong></p>
+<ul>
+<li>Explicit is better than implicit</li>
+<li>Better to pay the price during development, than during release</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-27">
+    <section class="slide-content"><h1 id="migration-path">Migration Path</h1>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-28">
+    <section class="slide-content"><p>There is no difference in how <code>maglev</code> is seen / consumed by external teams</p>
+<p>There is no difference in how <code>maglev</code> is qualified</p>
+<ul>
+<li>Code reorg</li>
+<li>System updates</li>
+<li>CI tooling</li>
+<li>Generate builds and start running existing test pipelines to get a stable build out</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-29">
+    <section class="slide-content"><h1 id="next">Next</h1>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-30">
+    <section class="slide-content"><p><strong>Log Sanitization</strong></p>
+<ul>
+<li><em>Send reports of logging rates across categories per service</em></li>
+</ul>
+<p><strong>Delivery of ManagedServices</strong></p>
+<ul>
+<li><em>Must be charts. Existing template mechanism has limitations</em></li>
+<li><em>Catalog can carry these charts</em></li>
+<li><em>Externalize config. Add Tests. Document.</em></li>
+<li><em>Configuration is a deployment time concern</em></li>
+</ul>
+<p><strong>TestOnDemand</strong></p>
+<ul>
+<li><em>maglev-ci categorized test suites</em></li>
+<li><em>CI robots to tag PRs and run appropriate test suites</em></li>
 </ul>
 </section>
   </div>
