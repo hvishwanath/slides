@@ -1,5 +1,5 @@
 title: maglev-x
-output: presentation.html
+output: index.html
 theme: sjaakvandenberg/cleaver-light
 
 ---
@@ -96,7 +96,8 @@ Explicit is better than implicit
 - *Maglev release is essentially a specification of all participating services*
 - *Helps with unified tooling, vs reinventing for every maglev form factor*
 
-Separate concerns, but unify 
+Separate concerns, but unify solutions
+- **
 
 ---
 
