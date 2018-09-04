@@ -676,7 +676,10 @@ pre .xml .cdata {
 <li><em>Significant overhead with branches, release management</em></li>
 <li><em>Babysitting builds sap out energy</em></li>
 </ul>
-<p><strong>CI/CD tooling is not streamlined</strong></p>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-5">
+    <section class="slide-content"><p><strong>CI/CD tooling is not streamlined</strong></p>
 <ul>
 <li><em>There is no specification of how this must happen</em></li>
 <li><em>Any activity (brancing, registry cleanup etc.,) in CI area will cause ripples almost in every area</em></li>
@@ -688,7 +691,7 @@ pre .xml .cdata {
 </ul>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-5">
+  <div class="slide hidden -" id="slide-6">
     <section class="slide-content"><p><strong>Code layout is not uniform</strong></p>
 <ul>
 <li><em>Source is somewhere, build is somewhere else, deployment is somewhere else</em></li>
@@ -697,8 +700,17 @@ pre .xml .cdata {
 </ul>
 <p><strong>Developer workflow</strong></p>
 <ul>
-<li><em>Not uniform</em></li>
+<li><em>Not uniform, Not straightforward</em></li>
 <li><em>Significant setup overhead to test features/fixes</em></li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-7">
+    <section class="slide-content"><p><strong>Developer Agility</strong></p>
+<ul>
+<li><em>Simple fixes take a LOT of time</em></li>
+<li><em>No clear interfaces/contracts between services</em></li>
+<li><em>Adding more engineers to the team can actually complicate this problem</em></li>
 </ul>
 <p><strong>Return of the monolith</strong></p>
 <ul>
@@ -712,11 +724,11 @@ pre .xml .cdata {
 </ul>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-6">
+  <div class="slide hidden -" id="slide-8">
     <section class="slide-content"><h1 id="returning-to-first-principles">Returning to first principles</h1>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-7">
+  <div class="slide hidden -" id="slide-9">
     <section class="slide-content"><p><strong>As a Developer, I - </strong></p>
 <p>Want to develop, fix, iterate quickly</p>
 <p>Want to test my fixes on the unit it is affecting without having to wait for hours</p>
@@ -726,7 +738,7 @@ pre .xml .cdata {
 <p>Dont want to chase builds</p>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-8">
+  <div class="slide hidden -" id="slide-10">
     <section class="slide-content"><p><strong>Versioning</strong></p>
 <ul>
 <li><em><a href="https://semver.org/">SemVer2</a>: Version numbers should follow conventions and indicate meaning</em></li>
@@ -746,7 +758,7 @@ pre .xml .cdata {
 </ul>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-9">
+  <div class="slide hidden -" id="slide-11">
     <section class="slide-content"><p><strong>Explicit is better than implicit</strong></p>
 <ul>
 <li><em>Current CI is a bit of magic. Requires lot of context, easy to make mistakes, fairly easy to fix them, but very hard to integrate into a build</em></li>
@@ -766,7 +778,7 @@ pre .xml .cdata {
 </ul>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-10">
+  <div class="slide hidden -" id="slide-12">
     <section class="slide-content"><p><strong>CI Stuff</strong></p>
 <ul>
 <li><em>Artifact for each service a helm chart (implies the corresponding container). No more tarballs.</em></li>
@@ -781,11 +793,11 @@ pre .xml .cdata {
 </ul>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-11">
+  <div class="slide hidden -" id="slide-13">
     <section class="slide-content"><h1 id="how-">How ?</h1>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-12">
+  <div class="slide hidden -" id="slide-14">
     <section class="slide-content"><h2 id="users-and-roles">Users and Roles</h2>
 <ul>
 <li>Service Developers : Team responsible for a service. End To End. </li>
@@ -798,7 +810,7 @@ pre .xml .cdata {
 <p>These are just logical roles/definitions. In our setup, there can be a few people that play (are already playing) these roles.</p>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-13">
+  <div class="slide hidden -" id="slide-15">
     <section class="slide-content"><h2 id="service-development-service-team-">Service Development (Service Team)</h2>
 <h3 id="process">Process</h3>
 <ul>
@@ -819,7 +831,7 @@ pre .xml .cdata {
 </ul>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-14">
+  <div class="slide hidden -" id="slide-16">
     <section class="slide-content"><h2 id="service-release-service-owner-">Service Release (Service Owner)</h2>
 <h3 id="process">Process</h3>
 <ul>
@@ -840,7 +852,7 @@ pre .xml .cdata {
 </ul>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-15">
+  <div class="slide hidden -" id="slide-17">
     <section class="slide-content"><h2 id="release-candidate-daily-integration-ci-team-">Release Candidate / Daily Integration (CI Team)</h2>
 <h3 id="process">Process</h3>
 <ul>
@@ -862,7 +874,7 @@ pre .xml .cdata {
 </ul>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-16">
+  <div class="slide hidden -" id="slide-18">
     <section class="slide-content"><h2 id="maglev-release-qa-ci-team-">Maglev Release (QA / CI Team)</h2>
 <h3 id="process">Process</h3>
 <ul>
@@ -884,16 +896,19 @@ pre .xml .cdata {
 </ul>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-17">
-    <section class="slide-content"><h3 id="in-a-nutshell">In a nutshell</h3>
-<p><img src="https://github3.cisco.com/raw/havishwa/slides/master/maglev-x/workflow.png?token=AAAOrfn4F-MbpBopr8pZuK91A_Sc7T0sks5blbEzwA%3D%3D" alt="workflow"></p>
+  <div class="slide hidden -" id="slide-19">
+    <section class="slide-content"><h2 id="in-a-nutshell">In a nutshell</h2>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-18">
+  <div class="slide hidden -" id="slide-20">
+    <section class="slide-content"><p><img src="https://github3.cisco.com/raw/havishwa/slides/master/maglev-x/workflow.png?token=AAAOrfn4F-MbpBopr8pZuK91A_Sc7T0sks5blbEzwA%3D%3D" alt="workflow"></p>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-21">
     <section class="slide-content"><h1 id="demo">Demo</h1>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-19">
+  <div class="slide hidden -" id="slide-22">
     <section class="slide-content"><h2 id="use-cases">Use Cases</h2>
 <h3 id="stateless-service">Stateless Service</h3>
 <ul>
@@ -906,7 +921,7 @@ pre .xml .cdata {
 </ul>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-20">
+  <div class="slide hidden -" id="slide-23">
     <section class="slide-content"><h3 id="stateful-managedservice-">Stateful (ManagedService)</h3>
 <ul>
 <li><code>rabbitmq</code></li>
@@ -932,15 +947,15 @@ pre .xml .cdata {
 </ul>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-21">
+  <div class="slide hidden -" id="slide-24">
     <section class="slide-content"><h1 id="action-">Action!</h1>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-22">
+  <div class="slide hidden -" id="slide-25">
     <section class="slide-content"><h1 id="before-after">Before / After</h1>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-23">
+  <div class="slide hidden -" id="slide-26">
     <section class="slide-content"><p><strong>Branching</strong></p>
 <ul>
 <li>Each maglev release train is a branch in <code>maglev-release-manifest</code> repo</li>
@@ -962,7 +977,7 @@ pre .xml .cdata {
 </ul>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-24">
+  <div class="slide hidden -" id="slide-27">
     <section class="slide-content"><p><strong>A bug in one of the released components</strong></p>
 <ul>
 <li>Localized fixes.</li>
@@ -983,11 +998,11 @@ pre .xml .cdata {
 </ul>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-25">
+  <div class="slide hidden -" id="slide-28">
     <section class="slide-content"><h1 id="cons">Cons</h1>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-26">
+  <div class="slide hidden -" id="slide-29">
     <section class="slide-content"><p><strong>Mono vs Multi repo</strong></p>
 <ul>
 <li>If something can have a different deployment cadence, it is better to be in a different repo</li>
@@ -1004,11 +1019,11 @@ pre .xml .cdata {
 </ul>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-27">
+  <div class="slide hidden -" id="slide-30">
     <section class="slide-content"><h1 id="migration-path">Migration Path</h1>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-28">
+  <div class="slide hidden -" id="slide-31">
     <section class="slide-content"><p>There is no difference in how <code>maglev</code> is seen / consumed by external teams</p>
 <p>There is no difference in how <code>maglev</code> is qualified</p>
 <ul>
@@ -1019,11 +1034,11 @@ pre .xml .cdata {
 </ul>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-29">
+  <div class="slide hidden -" id="slide-32">
     <section class="slide-content"><h1 id="next">Next</h1>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-30">
+  <div class="slide hidden -" id="slide-33">
     <section class="slide-content"><p><strong>Log Sanitization</strong></p>
 <ul>
 <li><em>Send reports of logging rates across categories per service</em></li>

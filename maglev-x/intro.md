@@ -33,6 +33,8 @@ Simple things are NOT simple
 - *Significant overhead with branches, release management*
 - *Babysitting builds sap out energy*
 
+---
+
 **CI/CD tooling is not streamlined**
 - *There is no specification of how this must happen*
 - *Any activity (brancing, registry cleanup etc.,) in CI area will cause ripples almost in every area*
@@ -49,8 +51,15 @@ Simple things are NOT simple
 - *Requires significant context for anyone to be productive and deliver with confidence*
 
 **Developer workflow**
-- *Not uniform*
+- *Not uniform, Not straightforward*
 - *Significant setup overhead to test features/fixes*
+
+---
+
+**Developer Agility**
+- *Simple fixes take a LOT of time*
+- *No clear interfaces/contracts between services*
+- *Adding more engineers to the team can actually complicate this problem*
 
 **Return of the monolith**
 - *Current code organization doesn't facilitate writing tests for managed services*
@@ -207,7 +216,9 @@ These are just logical roles/definitions. In our setup, there can be a few peopl
 - GC policy can be once in 6 months 
 ---
 
-### In a nutshell
+## In a nutshell
+
+---
 
 ![workflow](https://github3.cisco.com/raw/havishwa/slides/master/maglev-x/workflow.png?token=AAAOrfn4F-MbpBopr8pZuK91A_Sc7T0sks5blbEzwA%3D%3D)
 
