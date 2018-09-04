@@ -1,6 +1,6 @@
 title: maglev-x
 output: presentation.html
-theme: sjaakvandenberg/cleaver-dark
+theme: sjaakvandenberg/cleaver-light
 
 ---
 
@@ -13,6 +13,16 @@ theme: sjaakvandenberg/cleaver-dark
 # Why
 
 ---
+
+Developing and testing maglev is hard
+
+Releasing maglev is getting **harder**
+
+More developers != more productivity
+
+Simple things are NOT simple
+
+---
 We are micro services, but dont have any build/deployment advantages that come with it
 - *We release as a monolith*
 - *Simple fixes to be delivered requires a new build*
@@ -23,7 +33,7 @@ Getting a maglev build out is a huge task
 
 CI/CD tooling is not streamlined
 - *There is no specification of how this must happen*
-- *Any activity here will cause ripples almost in every area (registry cleanup, branching etc.,)*
+- *Any activity (brancing, registry cleanup etc.,) here will cause ripples almost in every area*
 
 Butterfly effect and blast radius
 - *Issue in one library/component will hold up the entire build*
@@ -41,142 +51,60 @@ Developer workflow
 - *Significant setup overhead to test features/fixes*
 
 Return of the monolith
-- *Current code organization doesn't facilitate automated tests*
+- *Current code organization doesn't facilitate writing tests for managed services*
 - *Developers spend significant time testing manually, but all is lost and cannot be repeated*
 - *Not conducive to focus on a single service/unit*
     - *For ex. a fix to redis config requires one to write sample package/appstack/managed_service_bundle*
     - *Cannot treat redis is a single unit and test its ha/failover/clustering aspects*
 ---
 
+# Returning to first principles
+
+---
+
+**As a Developer, I - **
+
+Want to develop, fix, iterate quickly
+
+Want to test my fixes on the unit it is affecting without having to wait for hours
+
+Want a very high confidence rate when I merge my PR 
+
+Want to accumulate all my manual testing effort into code
+
+Dont want to boil the ocean everytime I touch some code
+ 
+Dont want to chase builds
+
+---
+Versioning
+- *[SemVer2](https://semver.org/): Version numbers should follow conventions and indicate meaning*
+- *Every independently deployable entity MUST carry its own version*
+- *Can revert/checkout to a specific fix of a specific service*
+
+MicroServices
+- *Can be developed, tested, built, deployed and delivered independently*
+- *Container Boundaries*
+- *A service team / service owner is responsible for everything about that service*
+    - *Stability, Performance, Quality, Security, CSDL, Documentation etc.,*
+    - *Tooling can be developed to test these aspects and integrated during builds*
+
+---
+
+Explicit is better than implicit
+- *Current CI is a bit of magic. Requires lot of context, easy to make mistakes, fairly easy to fix them, but very hard to integrate into a build*
+- *Maglev release is essentially a specification of all participating services*
+- *Helps with unified tooling, vs reinventing for every maglev form factor*
+
+Separate concerns, but unify 
+
 ---
 
 ### Dev workflow
 
-<img src="https://github3.cisco.com/raw/havishwa/slides/master/maglev-x/workflow.png?token=AAAOrRLP4nntdaopxc9NBEBSEcB_DI_Sks5bktmlwA%3D%3D" height="700px">
+![workflow](https://github3.cisco.com/raw/havishwa/slides/master/maglev-x/workflow.png?token=AAAOrfn4F-MbpBopr8pZuK91A_Sc7T0sks5blbEzwA%3D%3D)
 
 ---
-
-
-### Complex CI/CD
-- No single place to download core maglev manifests
-- Update logic is currently complex (env variables are not preserved etc.,)
-- No easy way to slice/dice/compose a maglev release
-    - for ex. upgrades to stateful sets will be rare, and requires complex orchestration logic
-    - But web/compute type services can/need to be upgraded more often
-
----
-
-## What is helm?
-
-Official package manager for k8s apps
-
----
-
-- apt/yum/homebrew for k8s
-- 2 parts. `helm` (client), `tiller` (server)
-- k8s apps are organized as charts
-    - charts can contain any valid k8s object (deployment, svc, configmap, sts etc.,)
-- Useful constructs
-    - Can express dependencies and ordering
-    - Provides lifecycle hooks
-        - pre-install, post-install, pre-upgrade, post-upgrade, pre-delete, post-delete
-
----
-
-- Provides a notion of a `release`
-    - can be composed of multiple charts
-    - `releases` are stored as custom objects in k8s cluster (via tiller) 
-    - can be upgraded/rollback
-    
-- Provides a `helm repository`
-    - Charts can be distributed, versioned, fetched
-    - similar to dockerhub but for k8s apps
-    - several standard charts are already available (`helm install nginx`)
-- Official k8s project
-    - Actively maintained. Decent docs and support
-    - Will support upstream k8s enhancements
-
----
-
-## Approach
-
-Maglev should come up on ANY k8s cluster
-(irrespective of how they are created)
-
----
-
-## Logical View
-
-```
-        +---------------------------------------------+
-        |            Maglev Distribution (helm)       |
-        |  +---------------+   +-----------------+    |
-        |  |   managed     |   |     core addons |    | 
-        |  |   services    |   |                 |    |
-        |  |               |   |                 |    |
-        |  +---------------+   +-----------------+    |
-        +---------------------------------------------+
-        +---------------------------------------------+
-        |                    K8S Cluster              |
-        |            kubeadm, tectonic, kops, managed |
-        +---------------------------------------------+
-        +---------------------------------------------+
-        |               Infrastructure                | 
-        |   (IaaS, VSphere, BareMetal + any)          |
-        +-----------------------------+---------------+
-```
-
----
-
-# DEMO
-
----
-
-## Opening new doors
-
----
-
-### Composability
-
-- Slice/Dice/Compose a maglev-distro.
-- Ability to treat STS, stateless addons separately
-- Moving forward:
-    - Every core service can be its own chart/release
-    - Teams that develop are responsible for those charts
-    - Maglev release just has to express dependencies on them
-
----
-
-### Portability
-
-- Services can be made self sufficient
-    - For ex. creation of pki certs for kong/cred/encryption mgr is a `pre-install` hook
-    - Hooks can encapsulate complex orchestration logic
-- Maglev will run on any k8s cluster
-    - No ansible, `helm install`
-    - Can easily swap our k8s providers
----
-
-### Upgrades
-
-- SystemUpdater just downloads a maglev-distro tarball
-- `maglev-distro` can be another `kind` supported by catalogserver
-- Can upgrade/rollback
-- Changes to OS can be done by including a privileged pod/daemonset in the distro
-- Pre-requesites required by newer version of services will be done by hooks
-    - No ancillary image, loose ansible scripts
-
----
-
-### Developer productivity
-
-- Can selectively upgrade/downgrade
-    - Dont wait for new ISO to install
-    - Dont have to recreate dev clusters
-- One place to change addons
-
----
-
 ## Next
 
 - AWS deployments with helm
@@ -186,4 +114,3 @@ Maglev should come up on ANY k8s cluster
     - Docker registry seeding (modelled as a configmap with a controller)
     - IDM resource creation (post-install hook)
     - Managed Services user creation (post-install hook)
-    

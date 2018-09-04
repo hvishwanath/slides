@@ -177,13 +177,14 @@ light green : #a6e22e
 body {
   font-family: 'Open Sans', sans-serif;
   font-size: 100%;
-  color: #fafafa;
-  background-color: #191919;
+  color: #191919;
+  background-color: #fafafa;
 }
 
 /* Custom Slide Styles */
 #slide-1 {
-  background: #222 url(wireball.png) center center no-repeat;
+  color: #fafafa;
+  background: #222 url('fade.jpg') center center no-repeat;
   background-size: cover;
 }
 
@@ -218,8 +219,8 @@ img.badge {
 .slide-content {
   height: 100%;
   width: 100%;
-  padding: 0;
   margin: 0 auto;
+  padding: 0;
   font-size: 200%;
   font-weight: 200;
   line-height: 1.375;
@@ -242,7 +243,7 @@ img.badge {
   height: 0;
   width: 0;
   margin-right: 15px;
-  border: 15px solid #272822;
+  border: 15px solid #efefef;
   -webkit-touch-callout: none;
     -webkit-user-select: none;
      -khtml-user-select: none;
@@ -268,12 +269,12 @@ img.badge {
 }
 
 .prev:hover {
-  border-right-color: #efefef;
+  border-right-color: #272822;
   cursor: pointer;
 }
 
 .next:hover {
-  border-left-color: #efefef;
+  border-left-color: #272822;
   cursor: pointer;
 }
 
@@ -303,26 +304,26 @@ h3 {
   padding-bottom: 15px;
   font-size: 140%;
   line-height: 1.2;
-  border-bottom: 2px ridge #fafafa;
+  border-bottom: 2px ridge #191919;
 }
 
 ul {
-  padding: 20px 0 0 60px;
   font-weight: 200;
   line-height: 1.375;
+  padding: 20px 0 0 60px;
 }
 
 blockquote {
   padding-left: 20px;
   margin-left: 0;
-  background: #272822;
-  border-left: 5px solid #efefef;
+  background: #efefef;
+  border-left: 5px solid #272822;
   border-radius: 0 3px 3px 0;
 }
 
 blockquote p {
   padding: .5em;
-  color: #efefef;
+  color: #272822;
 }
 
 .left {
@@ -367,16 +368,16 @@ blockquote p {
 
 a {
   text-decoration: none;
-  color: #66d9ef;
+  color: #1db4d0;
 }
 
 a:hover {
-  color: #66d9ef;
-  border-bottom: 1px solid #66d9ef;
+  color: #1db4d0;
+  border-bottom: 1px solid #1db4d0;
 }
 
 hr {
-  border: 1px solid #efefef;
+  border: 1px solid #272822;
 }
 
 pre {
@@ -537,9 +538,7 @@ pre .xml .cdata {
 }
 
 /* Responsiveness */
-
 @media (max-width: 850px) {
-
   body {
     font-size: 70%;
   }
@@ -659,6 +658,13 @@ pre .xml .cdata {
 </section>
   </div>
   <div class="slide hidden -" id="slide-3">
+    <section class="slide-content"><p>Developing and testing maglev is hard</p>
+<p>Releasing maglev is getting <strong>harder</strong></p>
+<p>More developers != more productivity</p>
+<p>Simple things are NOT simple</p>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-4">
     <section class="slide-content"><p>We are micro services, but dont have any build/deployment advantages that come with it</p>
 <ul>
 <li><em>We release as a monolith</em></li>
@@ -672,7 +678,7 @@ pre .xml .cdata {
 <p>CI/CD tooling is not streamlined</p>
 <ul>
 <li><em>There is no specification of how this must happen</em></li>
-<li><em>Any activity here will cause ripples almost in every area (registry cleanup, branching etc.,)</em></li>
+<li><em>Any activity (brancing, registry cleanup etc.,) here will cause ripples almost in every area</em></li>
 </ul>
 <p>Butterfly effect and blast radius</p>
 <ul>
@@ -681,7 +687,7 @@ pre .xml .cdata {
 </ul>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-4">
+  <div class="slide hidden -" id="slide-5">
     <section class="slide-content"><p>Code layout is not uniform</p>
 <ul>
 <li><em>Source is somewhere, build is somewhere else, deployment is somewhere else</em></li>
@@ -695,7 +701,7 @@ pre .xml .cdata {
 </ul>
 <p>Return of the monolith</p>
 <ul>
-<li><em>Current code organization doesn&#39;t facilitate automated tests</em></li>
+<li><em>Current code organization doesn&#39;t facilitate writing tests for managed services</em></li>
 <li><em>Developers spend significant time testing manually, but all is lost and cannot be repeated</em></li>
 <li><em>Not conducive to focus on a single service/unit</em><ul>
 <li><em>For ex. a fix to redis config requires one to write sample package/appstack/managed_service_bundle</em></li>
@@ -705,166 +711,55 @@ pre .xml .cdata {
 </ul>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-5">
-    <section class="slide-content"></section>
-  </div>
   <div class="slide hidden -" id="slide-6">
-    <section class="slide-content"><h3 id="dev-workflow">Dev workflow</h3>
-<p><img src="https://github3.cisco.com/raw/havishwa/slides/master/maglev-x/test.png?token=AAAOrRLP4nntdaopxc9NBEBSEcB_DI_Sks5bktmlwA%3D%3D" height="700px"></p>
+    <section class="slide-content"><h1 id="returning-to-first-principles">Returning to first principles</h1>
 </section>
   </div>
   <div class="slide hidden -" id="slide-7">
-    <section class="slide-content"><h3 id="complex-ci-cd">Complex CI/CD</h3>
-<ul>
-<li>No single place to download core maglev manifests</li>
-<li>Update logic is currently complex (env variables are not preserved etc.,)</li>
-<li>No easy way to slice/dice/compose a maglev release<ul>
-<li>for ex. upgrades to stateful sets will be rare, and requires complex orchestration logic</li>
-<li>But web/compute type services can/need to be upgraded more often</li>
-</ul>
-</li>
-</ul>
+    <section class="slide-content"><p><strong>As a Developer, I - </strong></p>
+<p>Want to develop, fix, iterate quickly</p>
+<p>Want to test my fixes on the unit it is affecting without having to wait for hours</p>
+<p>Want a very high confidence rate when I merge my PR </p>
+<p>Want to accumulate all my manual testing effort into code</p>
+<p>Dont want to boil the ocean everytime I touch some code</p>
+<p>Dont want to chase builds</p>
 </section>
   </div>
   <div class="slide hidden -" id="slide-8">
-    <section class="slide-content"><h2 id="what-is-helm-">What is helm?</h2>
-<p>Official package manager for k8s apps</p>
+    <section class="slide-content"><p>Versioning</p>
+<ul>
+<li><em><a href="https://semver.org/">SemVer2</a>: Version numbers should follow conventions and indicate meaning</em></li>
+<li><em>Every independently deployable entity MUST carry its own version</em></li>
+<li><em>Can revert/checkout to a specific fix of a specific service</em></li>
+</ul>
+<p>MicroServices</p>
+<ul>
+<li><em>Can be developed, tested, built, deployed and delivered independently</em></li>
+<li><em>Container Boundaries</em></li>
+<li><em>A service team / service owner is responsible for everything about that service</em><ul>
+<li><em>Stability, Performance, Quality, Security, CSDL, Documentation etc.,</em></li>
+<li><em>Tooling can be developed to test these aspects and integrated during builds</em></li>
+</ul>
+</li>
+</ul>
 </section>
   </div>
   <div class="slide hidden -" id="slide-9">
-    <section class="slide-content"><ul>
-<li>apt/yum/homebrew for k8s</li>
-<li>2 parts. <code>helm</code> (client), <code>tiller</code> (server)</li>
-<li>k8s apps are organized as charts<ul>
-<li>charts can contain any valid k8s object (deployment, svc, configmap, sts etc.,)</li>
+    <section class="slide-content"><p>Explicit is better than implicit</p>
+<ul>
+<li><em>Current CI is a bit of magic. Requires lot of context, easy to make mistakes, fairly easy to fix them, but very hard to integrate into a build</em></li>
+<li><em>Maglev release is essentially a specification of all participating services</em></li>
+<li><em>Helps with unified tooling, vs reinventing for every maglev form factor</em></li>
 </ul>
-</li>
-<li>Useful constructs<ul>
-<li>Can express dependencies and ordering</li>
-<li>Provides lifecycle hooks<ul>
-<li>pre-install, post-install, pre-upgrade, post-upgrade, pre-delete, post-delete</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<p>Separate concerns, but unify</p>
 </section>
   </div>
   <div class="slide hidden -" id="slide-10">
-    <section class="slide-content"><ul>
-<li><p>Provides a notion of a <code>release</code></p>
-<ul>
-<li>can be composed of multiple charts</li>
-<li><code>releases</code> are stored as custom objects in k8s cluster (via tiller) </li>
-<li>can be upgraded/rollback</li>
-</ul>
-</li>
-<li><p>Provides a <code>helm repository</code></p>
-<ul>
-<li>Charts can be distributed, versioned, fetched</li>
-<li>similar to dockerhub but for k8s apps</li>
-<li>several standard charts are already available (<code>helm install nginx</code>)</li>
-</ul>
-</li>
-<li>Official k8s project<ul>
-<li>Actively maintained. Decent docs and support</li>
-<li>Will support upstream k8s enhancements</li>
-</ul>
-</li>
-</ul>
+    <section class="slide-content"><h3 id="dev-workflow">Dev workflow</h3>
+<p><img src="https://github3.cisco.com/raw/havishwa/slides/master/maglev-x/workflow.png?token=AAAOrfn4F-MbpBopr8pZuK91A_Sc7T0sks5blbEzwA%3D%3D" alt="workflow"></p>
 </section>
   </div>
   <div class="slide hidden -" id="slide-11">
-    <section class="slide-content"><h2 id="approach">Approach</h2>
-<p>Maglev should come up on ANY k8s cluster
-(irrespective of how they are created)</p>
-</section>
-  </div>
-  <div class="slide hidden -" id="slide-12">
-    <section class="slide-content"><h2 id="logical-view">Logical View</h2>
-<pre><code>        +---------------------------------------------+
-        |            Maglev Distribution (helm)       |
-        |  +---------------+   +-----------------+    |
-        |  |   managed     |   |     core addons |    | 
-        |  |   services    |   |                 |    |
-        |  |               |   |                 |    |
-        |  +---------------+   +-----------------+    |
-        +---------------------------------------------+
-        +---------------------------------------------+
-        |                    K8S Cluster              |
-        |            kubeadm, tectonic, kops, managed |
-        +---------------------------------------------+
-        +---------------------------------------------+
-        |               Infrastructure                | 
-        |   (IaaS, VSphere, BareMetal + any)          |
-        +-----------------------------+---------------+
-</code></pre></section>
-  </div>
-  <div class="slide hidden -" id="slide-13">
-    <section class="slide-content"><h1 id="demo">DEMO</h1>
-</section>
-  </div>
-  <div class="slide hidden -" id="slide-14">
-    <section class="slide-content"><h2 id="opening-new-doors">Opening new doors</h2>
-</section>
-  </div>
-  <div class="slide hidden -" id="slide-15">
-    <section class="slide-content"><h3 id="composability">Composability</h3>
-<ul>
-<li>Slice/Dice/Compose a maglev-distro.</li>
-<li>Ability to treat STS, stateless addons separately</li>
-<li>Moving forward:<ul>
-<li>Every core service can be its own chart/release</li>
-<li>Teams that develop are responsible for those charts</li>
-<li>Maglev release just has to express dependencies on them</li>
-</ul>
-</li>
-</ul>
-</section>
-  </div>
-  <div class="slide hidden -" id="slide-16">
-    <section class="slide-content"><h3 id="portability">Portability</h3>
-<ul>
-<li>Services can be made self sufficient<ul>
-<li>For ex. creation of pki certs for kong/cred/encryption mgr is a <code>pre-install</code> hook</li>
-<li>Hooks can encapsulate complex orchestration logic</li>
-</ul>
-</li>
-<li>Maglev will run on any k8s cluster<ul>
-<li>No ansible, <code>helm install</code></li>
-<li>Can easily swap our k8s providers</li>
-</ul>
-</li>
-</ul>
-</section>
-  </div>
-  <div class="slide hidden -" id="slide-17">
-    <section class="slide-content"><h3 id="upgrades">Upgrades</h3>
-<ul>
-<li>SystemUpdater just downloads a maglev-distro tarball</li>
-<li><code>maglev-distro</code> can be another <code>kind</code> supported by catalogserver</li>
-<li>Can upgrade/rollback</li>
-<li>Changes to OS can be done by including a privileged pod/daemonset in the distro</li>
-<li>Pre-requesites required by newer version of services will be done by hooks<ul>
-<li>No ancillary image, loose ansible scripts</li>
-</ul>
-</li>
-</ul>
-</section>
-  </div>
-  <div class="slide hidden -" id="slide-18">
-    <section class="slide-content"><h3 id="developer-productivity">Developer productivity</h3>
-<ul>
-<li>Can selectively upgrade/downgrade<ul>
-<li>Dont wait for new ISO to install</li>
-<li>Dont have to recreate dev clusters</li>
-</ul>
-</li>
-<li>One place to change addons</li>
-</ul>
-</section>
-  </div>
-  <div class="slide hidden -" id="slide-19">
     <section class="slide-content"><h2 id="next">Next</h2>
 <ul>
 <li>AWS deployments with helm</li>
@@ -887,18 +782,12 @@ pre .xml .cdata {
 
 
   <script type="text/javascript">
-    /**
- * Returns the current page number of the presentation.
- */
+    /* Returns the current page number of the presentation */
 function currentPosition() {
   return parseInt(document.querySelector('.slide:not(.hidden)').id.slice(6));
 }
 
-
-/**
- * Navigates forward n pages
- * If n is negative, we will navigate in reverse
- */
+/* Navigates forward n pages (navigate in reverse if n is negative) */
 function navigate(n) {
   var position = currentPosition();
   var numSlides = document.getElementsByClassName('slide').length;
@@ -917,18 +806,12 @@ function navigate(n) {
   updateTabIndex();
 }
 
-
-/**
- * Updates the current URL to include a hashtag of the current page number.
- */
+/* Updates the current URL to include a hashtag of the current page number */
 function updateURL() {
-  window.history.replaceState({} , null, '#' + currentPosition());
+  window.location.hash = currentPosition();
 }
 
-
-/**
- * Sets the progress indicator.
- */
+/* Sets the progress indicator */
 function updateProgress() {
   var progressBar = document.querySelector('.progress-bar');
 
@@ -939,7 +822,6 @@ function updateProgress() {
     progressBar.style.width = percent.toString() + '%';
   }
 }
-
 
 /**
  * Removes tabindex property from all links on the current slide, sets
@@ -961,9 +843,7 @@ function updateTabIndex() {
   }
 }
 
-/**
- * Determines whether or not we are currently in full screen mode
- */
+/* Determines whether or not we are currently in full screen mode */
 function isFullScreen() {
   return document.fullscreenElement ||
          document.mozFullScreenElement ||
