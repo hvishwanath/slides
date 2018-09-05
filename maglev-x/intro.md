@@ -16,7 +16,7 @@ theme: sjaakvandenberg/cleaver-light
 
 Developing maglev is interesting and hard. Which is why we 💕 it.
 
-Testing maglev is **harder**. We need to do something about it. 
+Testing maglev is **harder**. We need to something about it. 
 
 Building and releasing maglev is **hardest**. 💔
 
@@ -39,7 +39,7 @@ Simple things are NOT simple
 
 **CI/CD tooling is not streamlined**
 - *There is no specification of how this must happen*
-- *Any activity (branching, registry cleanup etc.,) in CI area will cause ripples almost in every area*
+- *Any activity (brancing, registry cleanup etc.,) in CI area will cause ripples almost in every area*
 
 **Butterfly effect and blast radius**
 - *Issue in one library/component will hold up the entire build*
@@ -71,9 +71,7 @@ Simple things are NOT simple
     - *Cannot treat redis is a single unit and test its ha/failover/clustering aspects*
 ---
 
-# Returning to first principles
-
----
+# Wishlist
 
 **As a Developer, I - **
 
@@ -89,6 +87,10 @@ Dont want to boil the ocean everytime I touch some code
  
 Dont want to chase builds
 
+---
+
+# Returning to first principles
+## and making required adjustments
 ---
 **Versioning**
 - *[SemVer2](https://semver.org/): Version numbers should follow conventions and indicate meaning*
