@@ -39,7 +39,7 @@ Simple things are NOT simple
 
 **CI/CD tooling is not streamlined**
 - *There is no specification of how this must happen*
-- *Any activity (brancing, registry cleanup etc.,) in CI area will cause ripples almost in every area*
+- *Any activity (branching, registry cleanup etc.,) in CI area will cause ripples almost in every area*
 
 **Butterfly effect and blast radius**
 - *Issue in one library/component will hold up the entire build*
