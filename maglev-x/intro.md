@@ -16,7 +16,7 @@ theme: sjaakvandenberg/cleaver-light
 
 Developing maglev is interesting and hard. Which is why we 💕 it.
 
-Testing maglev is **harder**. We need to something about it. 
+Testing maglev is **harder**. We need to do something about it. 
 
 Building and releasing maglev is **hardest**. 💔
 
