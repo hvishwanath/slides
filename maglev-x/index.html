@@ -899,22 +899,19 @@ pre .xml .cdata {
 </section>
   </div>
   <div class="slide hidden -" id="slide-19">
-    <section class="slide-content"><h2 id="in-a-nutshell">In a Nutshell</h2>
+    <section class="slide-content"><h1 id="in-a-nutshell">In a Nutshell</h1>
 </section>
   </div>
   <div class="slide hidden -" id="slide-20">
-    <section class="slide-content"><p><img src="https://github3.cisco.com/raw/havishwa/slides/master/maglev-x/workflow.png?token=AAAOrfn4F-MbpBopr8pZuK91A_Sc7T0sks5blbEzwA%3D%3D" style="display: inline-block; width=100%; height: auto" /></p>
-</section>
+    <section class="slide-content"><div style="height:100vh">
+<img src="https://github3.cisco.com/raw/havishwa/slides/master/maglev-x/workflow.png?token=AAAOrfn4F-MbpBopr8pZuK91A_Sc7T0sks5blbEzwA%3D%3D" />
+</div></section>
   </div>
   <div class="slide hidden -" id="slide-21">
-    <section class="slide-content"><p><img src="https://github3.cisco.com/raw/havishwa/slides/master/maglev-x/workflow.png?token=AAAOrfn4F-MbpBopr8pZuK91A_Sc7T0sks5blbEzwA%3D%3D" alt="workflow"></p>
-</section>
-  </div>
-  <div class="slide hidden -" id="slide-22">
     <section class="slide-content"><h1 id="demo">Demo</h1>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-23">
+  <div class="slide hidden -" id="slide-22">
     <section class="slide-content"><h2 id="use-cases">Use Cases</h2>
 <h3 id="stateless-service">Stateless Service</h3>
 <ul>
@@ -927,7 +924,7 @@ pre .xml .cdata {
 </ul>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-24">
+  <div class="slide hidden -" id="slide-23">
     <section class="slide-content"><h3 id="stateful-managedservice-">Stateful (ManagedService)</h3>
 <ul>
 <li><code>rabbitmq</code></li>
@@ -953,15 +950,15 @@ pre .xml .cdata {
 </ul>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-25">
+  <div class="slide hidden -" id="slide-24">
     <section class="slide-content"><h1 id="action-">Action!</h1>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-26">
+  <div class="slide hidden -" id="slide-25">
     <section class="slide-content"><h1 id="before-after">Before / After</h1>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-27">
+  <div class="slide hidden -" id="slide-26">
     <section class="slide-content"><p><strong>Branching</strong></p>
 <ul>
 <li>Each maglev release train is a branch in <code>maglev-release-manifest</code> repo</li>
@@ -983,7 +980,7 @@ pre .xml .cdata {
 </ul>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-28">
+  <div class="slide hidden -" id="slide-27">
     <section class="slide-content"><p><strong>A bug in one of the released components</strong></p>
 <ul>
 <li>Localized fixes.</li>
@@ -1004,11 +1001,11 @@ pre .xml .cdata {
 </ul>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-29">
+  <div class="slide hidden -" id="slide-28">
     <section class="slide-content"><h1 id="cons">Cons</h1>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-30">
+  <div class="slide hidden -" id="slide-29">
     <section class="slide-content"><p><strong>Mono vs Multi repo</strong></p>
 <ul>
 <li>If something can have a different deployment cadence, it is better to be in a different repo</li>
@@ -1025,26 +1022,37 @@ pre .xml .cdata {
 </ul>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-31">
+  <div class="slide hidden -" id="slide-30">
     <section class="slide-content"><h1 id="migration-path">Migration Path</h1>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-32">
+  <div class="slide hidden -" id="slide-31">
     <section class="slide-content"><p>There is no difference in how <code>maglev</code> is seen / consumed by external teams</p>
 <p>There is no difference in how <code>maglev</code> is qualified</p>
+<p>So: </p>
 <ul>
-<li>Code reorg</li>
-<li>System updates</li>
-<li>CI tooling</li>
-<li>Generate builds and start running existing test pipelines to get a stable build out</li>
+<li>Code reorg<ul>
+<li>Anything we decide, mono repo vs multi repo</li>
+<li>Create repos by filtering git history from the main repo</li>
+</ul>
+</li>
+<li>System updates<ul>
+<li>Around the <code>release-spec</code></li>
+</ul>
+</li>
+<li>CI tooling<ul>
+<li>The demo shows some of the work</li>
+</ul>
+</li>
+<li>Qualify builds with the existing pipelines</li>
 </ul>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-33">
+  <div class="slide hidden -" id="slide-32">
     <section class="slide-content"><h1 id="next">Next</h1>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-34">
+  <div class="slide hidden -" id="slide-33">
     <section class="slide-content"><p><strong>Log Sanitization</strong></p>
 <ul>
 <li><em>Send reports of logging rates across categories per service</em></li>

@@ -218,15 +218,13 @@ These are just logical roles/definitions. In our setup, there can be a few peopl
 - GC policy can be once in 6 months 
 ---
 
-## In a Nutshell
+# In a Nutshell
 
 ---
 
-<img src="https://github3.cisco.com/raw/havishwa/slides/master/maglev-x/workflow.png?token=AAAOrfn4F-MbpBopr8pZuK91A_Sc7T0sks5blbEzwA%3D%3D" style="display: inline-block; width=100%; height: auto" />
-
----
-
-![workflow](https://github3.cisco.com/raw/havishwa/slides/master/maglev-x/workflow.png?token=AAAOrfn4F-MbpBopr8pZuK91A_Sc7T0sks5blbEzwA%3D%3D)
+<div style="height:100vh">
+<img src="https://github3.cisco.com/raw/havishwa/slides/master/maglev-x/workflow.png?token=AAAOrfn4F-MbpBopr8pZuK91A_Sc7T0sks5blbEzwA%3D%3D" />
+</div>
 
 ---
 
@@ -332,10 +330,16 @@ There is no difference in how `maglev` is seen / consumed by external teams
 
 There is no difference in how `maglev` is qualified
 
+So: 
+
 - Code reorg
+    - Anything we decide, mono repo vs multi repo
+    - Create repos by filtering git history from the main repo
 - System updates
+    - Around the `release-spec`
 - CI tooling
-- Generate builds and start running existing test pipelines to get a stable build out
+    - The demo shows some of the work
+- Qualify builds with the existing pipelines
 
 ---
 
