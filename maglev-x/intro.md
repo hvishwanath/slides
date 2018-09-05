@@ -14,9 +14,11 @@ theme: sjaakvandenberg/cleaver-light
 
 ---
 
-Developing and testing maglev is hard
+Developing maglev is interesting and hard. Which is why we 💕.
 
-Releasing maglev is getting **harder**
+Testing maglev is **harder**. We need to something about it. 
+
+Building and releasing maglev is **hardest**. 💔
 
 More developers != more productivity
 
@@ -26,10 +28,8 @@ Simple things are NOT simple
 **Microservices... but...**
 
 - *We are micro services, but dont have any build/deployment advantages that come with it*
-- *We release as a monolith
-- *
-- *Simple, localized fixes to be delivered requires a new build
-- *
+- *We release as a monolith*
+- *Simple, localized fixes to be delivered requires a new build*
 
 **Getting a maglev build out is a huge task**
 - *Significant overhead with branches, release management*
