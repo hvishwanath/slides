@@ -26,8 +26,10 @@ Simple things are NOT simple
 **Microservices... but...**
 
 - *We are micro services, but dont have any build/deployment advantages that come with it*
-- *We release as a monolith*
-- *Simple, localized fixes to be delivered requires a new build*
+- *We release as a monolith
+- *
+- *Simple, localized fixes to be delivered requires a new build
+- *
 
 **Getting a maglev build out is a huge task**
 - *Significant overhead with branches, release management*
@@ -216,7 +218,11 @@ These are just logical roles/definitions. In our setup, there can be a few peopl
 - GC policy can be once in 6 months 
 ---
 
-## In a nutshell
+## In a Nutshell
+
+---
+
+<img src="https://github3.cisco.com/raw/havishwa/slides/master/maglev-x/workflow.png?token=AAAOrfn4F-MbpBopr8pZuK91A_Sc7T0sks5blbEzwA%3D%3D" style="display: inline-block; width=100%; height: auto" />
 
 ---
 
