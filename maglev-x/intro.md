@@ -39,7 +39,7 @@ Simple things are NOT simple
 
 **CI/CD tooling is not streamlined**
 - *There is no specification of how this must happen*
-- *Any activity (brancing, registry cleanup etc.,) in CI area will cause ripples almost in every area*
+- *Any activity (branching, registry cleanup etc.,) in CI area will cause ripples almost in every area*
 
 **Butterfly effect and blast radius**
 - *Issue in one library/component will hold up the entire build*
@@ -86,6 +86,10 @@ Want to accumulate all my manual testing effort into code
 Dont want to boil the ocean everytime I touch some code
  
 Dont want to chase builds
+
+---
+
+# Proposal
 
 ---
 
@@ -150,7 +154,7 @@ Dont want to chase builds
 - Maglev Admin : Team responsible for `maglev-release`
 - Platform Teams: Teams responsible for getting a `maglev-release` into a platform (ex. DNAC)
 
-These are just logical roles/definitions. In our setup, there can be a few people that play (are already playing) these roles.
+These are just logical roles/definitions. In our setup, there can be just a few people that play (are already playing) these roles.
 ---
 
 ## Service Development (Service Team)
@@ -308,6 +312,22 @@ These are just logical roles/definitions. In our setup, there can be a few peopl
 
 ---
 
+# Change Maglev's release/consumption model
+
+---
+
+### Use `maglev-release-spec`
+
+- The OS and K8S infra bits change less often
+- Our ISO will just be upto k8s control plane. Whenver the bits change, we ask teams to refresh this.
+- Maglev release will just be:
+    - A `maglev-deployer` : Another pod that knows how to deploy maglev.
+    - Tooling around the `release-spec`
+- Whenever there is a bug, or we need to deliver a build, we deliver this `maglev-deployer`
+- Upstream teams run through their pipelines and construct `UBER ISO`
+
+---
+
 # Cons
 ---
 
@@ -345,9 +365,26 @@ So:
 
 ---
 
+# In Summary
+
+---
+
+- Optimize for accuracy; pay price during development.
+- Semantic versioning
+- Organize code in such a way:
+    - Helps independent deployment cadence
+    - Helps in e2e dev/build/test/fix as a unit
+- Run tests in cluster environment
+- Lock down depdendencies; Reduce Jitter
+- Change maglev release/consumption model 
+
+---
+
 # Next
 
 ---
+
+**Tooling around this release-spec**
 
 **Log Sanitization**
 
