@@ -229,7 +229,7 @@ These are just logical roles/definitions. In our setup, there can be just a few 
 ---
 
 <div style="height:100vh">
-<img src="https://github3.cisco.com/raw/havishwa/slides/master/maglev-x/workflow.png?token=AAAOrfn4F-MbpBopr8pZuK91A_Sc7T0sks5blbEzwA%3D%3D" />
+<img src="https://github3.cisco.com/raw/havishwa/slides/master/maglev-x/workflow.png?token=AAAOrXq6op6vKYDI6LpqVu3GxnGSittwks5bocqKwA%3D%3D" />
 </div>
 
 ---
@@ -384,18 +384,40 @@ So:
 
 ---
 
-**Tooling around this release-spec**
+### Test / Build infrastructure
 
-**Log Sanitization**
+- We need a pool of clusters. A `ClusterPoolManager` that manages the states of these clusters.
+- Moves through Available, PR, RC and Reset queues
+- Need to find out how the dependent services for a given service can come up in cluster
+    - Ex. RabbitMQ, MongoDB - these are Common
+    - MaglevServer needs CatalogServer etc.,
+---
 
+### Tooling around release-spec
+
+- Maglev deploy/upgrade tooling using release spec
+- Agnostic of how the k8s layer comes up
+- How do we manage and release the `maglev-deployer`
+
+---
+
+### Log Management
+
+- We need the test run logs available for analysis from developers
 - *Send reports of logging rates across categories per service*
 
-**Delivery of ManagedServices**
+---
+
+### Delivery of ManagedServices
+
 - *Must be charts. Existing template mechanism has limitations*
 - *Catalog can carry these charts*
 - *Externalize config. Add Tests. Document.*
 - *Configuration is a deployment time concern*
 
-**TestOnDemand**
+---
+
+### TestOnDemand
+
 - *maglev-ci categorized test suites*
 - *CI robots to tag PRs and run appropriate test suites*

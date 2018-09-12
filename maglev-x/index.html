@@ -909,7 +909,7 @@ pre .xml .cdata {
   </div>
   <div class="slide hidden -" id="slide-21">
     <section class="slide-content"><div style="height:100vh">
-<img src="https://github3.cisco.com/raw/havishwa/slides/master/maglev-x/workflow.png?token=AAAOrfn4F-MbpBopr8pZuK91A_Sc7T0sks5blbEzwA%3D%3D" />
+<img src="https://github3.cisco.com/raw/havishwa/slides/master/maglev-x/workflow.png?token=AAAOrXq6op6vKYDI6LpqVu3GxnGSittwks5bocqKwA%3D%3D" />
 </div></section>
   </div>
   <div class="slide hidden -" id="slide-22">
@@ -1096,19 +1096,47 @@ pre .xml .cdata {
 </section>
   </div>
   <div class="slide hidden -" id="slide-38">
-    <section class="slide-content"><p><strong>Tooling around this release-spec</strong></p>
-<p><strong>Log Sanitization</strong></p>
+    <section class="slide-content"><h3 id="test-build-infrastructure">Test / Build infrastructure</h3>
 <ul>
+<li>We need a pool of clusters. A <code>ClusterPoolManager</code> that manages the states of these clusters.</li>
+<li>Moves through Available, PR, RC and Reset queues</li>
+<li>Need to find out how the dependent services for a given service can come up in cluster<ul>
+<li>Ex. RabbitMQ, MongoDB - these are Common</li>
+<li>MaglevServer needs CatalogServer etc.,</li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-39">
+    <section class="slide-content"><h3 id="tooling-around-release-spec">Tooling around release-spec</h3>
+<ul>
+<li>Maglev deploy/upgrade tooling using release spec</li>
+<li>Agnostic of how the k8s layer comes up</li>
+<li>How do we manage and release the <code>maglev-deployer</code></li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-40">
+    <section class="slide-content"><h3 id="log-management">Log Management</h3>
+<ul>
+<li>We need the test run logs available for analysis from developers</li>
 <li><em>Send reports of logging rates across categories per service</em></li>
 </ul>
-<p><strong>Delivery of ManagedServices</strong></p>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-41">
+    <section class="slide-content"><h3 id="delivery-of-managedservices">Delivery of ManagedServices</h3>
 <ul>
 <li><em>Must be charts. Existing template mechanism has limitations</em></li>
 <li><em>Catalog can carry these charts</em></li>
 <li><em>Externalize config. Add Tests. Document.</em></li>
 <li><em>Configuration is a deployment time concern</em></li>
 </ul>
-<p><strong>TestOnDemand</strong></p>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-42">
+    <section class="slide-content"><h3 id="testondemand">TestOnDemand</h3>
 <ul>
 <li><em>maglev-ci categorized test suites</em></li>
 <li><em>CI robots to tag PRs and run appropriate test suites</em></li>
